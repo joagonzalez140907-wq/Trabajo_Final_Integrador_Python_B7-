@@ -1,16 +1,12 @@
-# Clase que representa una bicicleta del parque.
-# Cada bicicleta tiene un codigo, un tipo, una tarifa por hora
-# y un estado que indica si esta disponible para alquilar.
-
 class Bicicleta:
 
     def __init__(self, codigo, tipo, tarifa_por_hora, disponible):
         self.__codigo = codigo
-        self.__tipo = tipo  # por ejemplo: comun, montaña, electrica
+        self.__tipo = tipo 
         self.__tarifa_por_hora = tarifa_por_hora
-        self.__disponible = disponible  # True si se puede alquilar
+        self.__disponible = disponible 
 
-    # ------- Getters -------
+
     def get_codigo(self):
         return self.__codigo
 
@@ -23,7 +19,7 @@ class Bicicleta:
     def get_disponible(self):
         return self.__disponible
 
-    # ------- Setters -------
+   
     def set_tipo(self, tipo):
         self.__tipo = tipo
 
@@ -33,9 +29,9 @@ class Bicicleta:
     def set_disponible(self, disponible):
         self.__disponible = disponible
 
-    # ------- Metodos -------
+  
     def mostrar_datos(self):
-        # Segun el estado mostramos un texto u otro
+     
         if self.__disponible:
             estado = "Disponible"
         else:
@@ -45,7 +41,7 @@ class Bicicleta:
               "| Tarifa por hora: $", self.__tarifa_por_hora,
               "| Estado:", estado)
 
-    # Convierte el objeto en un diccionario para poder guardarlo en JSON.
+
     def convertir_a_diccionario(self):
         diccionario = {}
         diccionario["codigo"] = self.__codigo
