@@ -1,10 +1,5 @@
-# Funciones auxiliares para pedir datos por teclado.
-# Las separamos en este archivo porque las usamos en varios lugares
-# y asi no repetimos el mismo codigo.
-
-
 def pedir_texto_no_vacio(mensaje):
-    # Pide un texto y lo vuelve a pedir mientras este vacio.
+    
     texto = input(mensaje)
     texto = texto.strip()
     while texto == "":
@@ -15,7 +10,7 @@ def pedir_texto_no_vacio(mensaje):
 
 
 def pedir_numero_entero_positivo(mensaje):
-    # Pide un numero entero mayor a cero y lo vuelve a pedir si no es valido.
+    
     while True:
         texto = input(mensaje)
         texto = texto.strip()
@@ -27,5 +22,5 @@ def pedir_numero_entero_positivo(mensaje):
 
 
 def pausar():
-    # Espera a que el usuario presione Enter para seguir.
+    
     input("\nPresione Enter para continuar...")
