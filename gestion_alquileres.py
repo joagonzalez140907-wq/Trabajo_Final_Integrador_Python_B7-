@@ -1,7 +1,3 @@
-# Funciones para gestionar los alquileres:
-# iniciar un alquiler, finalizarlo (devolucion), calcular el tiempo de uso,
-# calcular el importe y listar los alquileres.
-
 from datetime import datetime
 
 from alquiler import Alquiler
@@ -10,18 +6,18 @@ import utilidades
 from gestion_clientes import buscar_cliente_por_dni
 from gestion_bicicletas import buscar_bicicleta_por_codigo
 
-# Formato de las fechas, por ejemplo: "07/07/2026 15:30"
+
 FORMATO_FECHA = "%d/%m/%Y %H:%M"
 
 
 def obtener_fecha_hora_actual():
-    # Devuelve la fecha y hora de ahora como texto.
+  
     ahora = datetime.now()
     return ahora.strftime(FORMATO_FECHA)
 
 
 def calcular_minutos_de_uso(fecha_inicio_texto, fecha_fin_texto):
-    # Convierte los dos textos a fechas y calcula cuantos minutos pasaron.
+    
     fecha_inicio = datetime.strptime(fecha_inicio_texto, FORMATO_FECHA)
     fecha_fin = datetime.strptime(fecha_fin_texto, FORMATO_FECHA)
     diferencia = fecha_fin - fecha_inicio
@@ -31,8 +27,7 @@ def calcular_minutos_de_uso(fecha_inicio_texto, fecha_fin_texto):
 
 
 def calcular_importe(minutos_de_uso, tarifa_por_hora):
-    # Se cobra por hora. Si sobra aunque sea un minuto, se cobra la hora completa.
-    # El minimo que se cobra es 1 hora.
+    
     horas_a_cobrar = minutos_de_uso // 60
     if minutos_de_uso % 60 != 0:
         horas_a_cobrar = horas_a_cobrar + 1
@@ -43,7 +38,7 @@ def calcular_importe(minutos_de_uso, tarifa_por_hora):
 
 
 def obtener_proximo_numero(lista_alquileres):
-    # El numero del nuevo alquiler es el mas grande que exista mas uno.
+  
     numero_mas_grande = 0
     for alquiler in lista_alquileres:
         if alquiler.get_numero() > numero_mas_grande:
@@ -52,7 +47,7 @@ def obtener_proximo_numero(lista_alquileres):
 
 
 def buscar_alquiler_en_curso_de_bicicleta(lista_alquileres, codigo_bicicleta):
-    # Busca un alquiler que todavia no termino para esa bicicleta.
+  
     for alquiler in lista_alquileres:
         if alquiler.get_codigo_bicicleta() == codigo_bicicleta:
             if not alquiler.get_finalizado():
@@ -79,13 +74,13 @@ def iniciar_alquiler(lista_clientes, lista_bicicletas, lista_alquileres):
         print("Esa bicicleta ya esta alquilada.")
         return
 
-    # Creamos el alquiler con la fecha y hora actual.
+    
     numero = obtener_proximo_numero(lista_alquileres)
     fecha_hora_inicio = obtener_fecha_hora_actual()
     nuevo_alquiler = Alquiler(numero, dni, codigo, fecha_hora_inicio, "", 0, False)
     lista_alquileres.append(nuevo_alquiler)
 
-    # La bicicleta pasa a estar no disponible.
+    
     bicicleta.set_disponible(False)
 
     persistencia.guardar_alquileres(lista_alquileres)
@@ -107,17 +102,17 @@ def finalizar_alquiler(lista_bicicletas, lista_alquileres):
 
     bicicleta = buscar_bicicleta_por_codigo(lista_bicicletas, codigo)
 
-    # Calculamos el tiempo de uso y el importe.
+    
     fecha_hora_fin = obtener_fecha_hora_actual()
     minutos_de_uso = calcular_minutos_de_uso(alquiler.get_fecha_hora_inicio(), fecha_hora_fin)
     importe = calcular_importe(minutos_de_uso, bicicleta.get_tarifa_por_hora())
 
-    # Actualizamos el alquiler.
+    
     alquiler.set_fecha_hora_fin(fecha_hora_fin)
     alquiler.set_importe(importe)
     alquiler.set_finalizado(True)
 
-    # La bicicleta vuelve a estar disponible.
+    
     bicicleta.set_disponible(True)
 
     persistencia.guardar_alquileres(lista_alquileres)
