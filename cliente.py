@@ -1,7 +1,3 @@
-# Clase que representa a un cliente del sistema de alquiler.
-# Usamos atributos privados (empiezan con __) y accedemos a ellos
-# con getters y setters, como se ve en Programacion Orientada a Objetos.
-
 class Cliente:
 
     def __init__(self, dni, nombre, apellido, telefono):
@@ -10,7 +6,7 @@ class Cliente:
         self.__apellido = apellido
         self.__telefono = telefono
 
-    # ------- Getters -------
+
     def get_dni(self):
         return self.__dni
 
@@ -23,7 +19,7 @@ class Cliente:
     def get_telefono(self):
         return self.__telefono
 
-    # ------- Setters -------
+
     def set_nombre(self, nombre):
         self.__nombre = nombre
 
@@ -33,7 +29,7 @@ class Cliente:
     def set_telefono(self, telefono):
         self.__telefono = telefono
 
-    # ------- Metodos -------
+
     def nombre_completo(self):
         return self.__nombre + " " + self.__apellido
 
@@ -42,7 +38,7 @@ class Cliente:
         print("Nombre y apellido:", self.nombre_completo())
         print("Telefono:", self.__telefono)
 
-    # Convierte el objeto en un diccionario para poder guardarlo en JSON.
+   
     def convertir_a_diccionario(self):
         diccionario = {}
         diccionario["dni"] = self.__dni
