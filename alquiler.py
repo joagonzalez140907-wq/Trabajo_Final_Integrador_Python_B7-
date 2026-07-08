@@ -1,7 +1,3 @@
-# Clase que representa un alquiler de una bicicleta.
-# Guarda que cliente alquilo, que bicicleta, cuando empezo y cuando termino,
-# el importe cobrado y si el alquiler ya finalizo o sigue en curso.
-
 class Alquiler:
 
     def __init__(self, numero, dni_cliente, codigo_bicicleta,
@@ -9,13 +5,12 @@ class Alquiler:
         self.__numero = numero
         self.__dni_cliente = dni_cliente
         self.__codigo_bicicleta = codigo_bicicleta
-        # Las fechas se guardan como texto, por ejemplo "07/07/2026 15:30"
         self.__fecha_hora_inicio = fecha_hora_inicio
-        self.__fecha_hora_fin = fecha_hora_fin   # queda "" mientras no termina
-        self.__importe = importe                  # queda 0 mientras no termina
-        self.__finalizado = finalizado            # True cuando se devuelve la bici
+        self.__fecha_hora_fin = fecha_hora_fin   
+        self.__importe = importe                  
+        self.__finalizado = finalizado            
 
-    # ------- Getters -------
+    
     def get_numero(self):
         return self.__numero
 
@@ -37,7 +32,7 @@ class Alquiler:
     def get_finalizado(self):
         return self.__finalizado
 
-    # ------- Setters -------
+
     def set_fecha_hora_fin(self, fecha_hora_fin):
         self.__fecha_hora_fin = fecha_hora_fin
 
@@ -47,7 +42,6 @@ class Alquiler:
     def set_finalizado(self, finalizado):
         self.__finalizado = finalizado
 
-    # ------- Metodos -------
     def mostrar_datos(self):
         print("Alquiler numero:", self.__numero)
         print("  DNI del cliente:", self.__dni_cliente)
@@ -59,7 +53,7 @@ class Alquiler:
         else:
             print("  Estado: EN CURSO")
 
-    # Convierte el objeto en un diccionario para poder guardarlo en JSON.
+
     def convertir_a_diccionario(self):
         diccionario = {}
         diccionario["numero"] = self.__numero
