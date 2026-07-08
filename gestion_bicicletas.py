@@ -1,14 +1,10 @@
-# Funciones para gestionar las bicicletas: registrar, listar,
-# buscar y mostrar las que estan disponibles.
-
 from bicicleta import Bicicleta
 import persistencia
 import utilidades
 
 
 def buscar_bicicleta_por_codigo(lista_bicicletas, codigo):
-    # Recorre la lista y devuelve la bicicleta con ese codigo.
-    # Si no la encuentra devuelve None.
+
     for bicicleta in lista_bicicletas:
         if bicicleta.get_codigo() == codigo:
             return bicicleta
@@ -19,7 +15,7 @@ def registrar_bicicleta(lista_bicicletas):
     print("\n--- REGISTRAR BICICLETA ---")
     codigo = utilidades.pedir_texto_no_vacio("Ingrese el codigo (ejemplo B001): ")
 
-    # Controlamos que el codigo no este ya registrado
+  
     bicicleta_encontrada = buscar_bicicleta_por_codigo(lista_bicicletas, codigo)
     if bicicleta_encontrada is not None:
         print("Ya existe una bicicleta con ese codigo.")
@@ -29,7 +25,7 @@ def registrar_bicicleta(lista_bicicletas):
     tipo = utilidades.pedir_texto_no_vacio("Ingrese el tipo: ")
     tarifa = utilidades.pedir_numero_entero_positivo("Ingrese la tarifa por hora ($): ")
 
-    # Una bicicleta nueva siempre arranca disponible
+   
     nueva_bicicleta = Bicicleta(codigo, tipo, tarifa, True)
     lista_bicicletas.append(nueva_bicicleta)
     persistencia.guardar_bicicletas(lista_bicicletas)
