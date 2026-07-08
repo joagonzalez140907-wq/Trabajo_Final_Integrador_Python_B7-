@@ -1,13 +1,9 @@
-# Funciones para calcular estadisticas de utilizacion del sistema:
-# recaudacion, tiempo total de uso, bicicleta mas alquilada y
-# cliente con mas alquileres.
-
 from gestion_clientes import buscar_cliente_por_dni
 from gestion_alquileres import calcular_minutos_de_uso
 
 
 def calcular_recaudacion_total(lista_alquileres):
-    # Suma los importes de todos los alquileres que ya finalizaron.
+   
     total = 0
     for alquiler in lista_alquileres:
         if alquiler.get_finalizado():
@@ -16,7 +12,7 @@ def calcular_recaudacion_total(lista_alquileres):
 
 
 def calcular_minutos_totales(lista_alquileres):
-    # Suma los minutos de uso de todos los alquileres finalizados.
+   
     total_minutos = 0
     for alquiler in lista_alquileres:
         if alquiler.get_finalizado():
@@ -27,8 +23,7 @@ def calcular_minutos_totales(lista_alquileres):
 
 
 def contar_alquileres_por_bicicleta(lista_alquileres):
-    # Devuelve un diccionario con cuantas veces se alquilo cada bicicleta.
-    # Por ejemplo: {"B001": 3, "B002": 1}
+  
     contador = {}
     for alquiler in lista_alquileres:
         codigo = alquiler.get_codigo_bicicleta()
@@ -40,7 +35,7 @@ def contar_alquileres_por_bicicleta(lista_alquileres):
 
 
 def contar_alquileres_por_cliente(lista_alquileres):
-    # Devuelve un diccionario con cuantos alquileres hizo cada cliente.
+   
     contador = {}
     for alquiler in lista_alquileres:
         dni = alquiler.get_dni_cliente()
@@ -52,7 +47,7 @@ def contar_alquileres_por_cliente(lista_alquileres):
 
 
 def buscar_clave_con_mayor_valor(diccionario):
-    # Recorre un diccionario y devuelve la clave que tiene el valor mas alto.
+    
     clave_ganadora = ""
     valor_mas_alto = 0
     for clave in diccionario:
@@ -69,27 +64,27 @@ def mostrar_estadisticas(lista_clientes, lista_bicicletas, lista_alquileres):
         print("Todavia no hay alquileres registrados.")
         return
 
-    # Cantidades generales
+
     print("Clientes registrados:", len(lista_clientes))
     print("Bicicletas registradas:", len(lista_bicicletas))
     print("Total de alquileres:", len(lista_alquileres))
 
-    # Recaudacion total
+  
     recaudacion = calcular_recaudacion_total(lista_alquileres)
     print("Recaudacion total: $", recaudacion)
 
-    # Tiempo total de uso
+
     minutos_totales = calcular_minutos_totales(lista_alquileres)
     print("Tiempo total de uso:", minutos_totales, "minutos.")
 
-    # Bicicleta mas alquilada
+
     contador_bicicletas = contar_alquileres_por_bicicleta(lista_alquileres)
     codigo_mas_alquilada = buscar_clave_con_mayor_valor(contador_bicicletas)
     cantidad = contador_bicicletas[codigo_mas_alquilada]
     print("Bicicleta mas alquilada:", codigo_mas_alquilada,
           "con", cantidad, "alquileres.")
 
-    # Cliente con mas alquileres
+
     contador_clientes = contar_alquileres_por_cliente(lista_alquileres)
     dni_mejor_cliente = buscar_clave_con_mayor_valor(contador_clientes)
     cantidad = contador_clientes[dni_mejor_cliente]
