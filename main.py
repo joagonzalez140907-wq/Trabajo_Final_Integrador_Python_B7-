@@ -1,10 +1,3 @@
-# =============================================================
-#  Trabajo Final Integrador - Laboratorio de Python
-#  Escenario 11: Sistema de alquiler de bicicletas
-# =============================================================
-#  Este es el programa principal. Muestra un menu y, segun la
-#  opcion que elija el usuario, llama a la funcion correspondiente.
-
 import os
 
 import persistencia
@@ -34,11 +27,11 @@ def mostrar_menu():
 
 
 def main():
-    # Si no existe la carpeta datos la creamos.
+   
     if not os.path.exists("datos"):
         os.mkdir("datos")
 
-    # Al iniciar cargamos los datos guardados en los archivos JSON.
+   
     lista_clientes = persistencia.cargar_clientes()
     lista_bicicletas = persistencia.cargar_bicicletas()
     lista_alquileres = persistencia.cargar_alquileres()
