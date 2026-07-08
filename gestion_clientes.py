@@ -1,13 +1,10 @@
-# Funciones para gestionar los clientes: registrar, listar, buscar y modificar.
-
 from cliente import Cliente
 import persistencia
 import utilidades
 
 
 def buscar_cliente_por_dni(lista_clientes, dni):
-    # Recorre la lista y devuelve el cliente con ese DNI.
-    # Si no lo encuentra devuelve None.
+   
     for cliente in lista_clientes:
         if cliente.get_dni() == dni:
             return cliente
@@ -18,7 +15,7 @@ def registrar_cliente(lista_clientes):
     print("\n--- REGISTRAR CLIENTE ---")
     dni = utilidades.pedir_texto_no_vacio("Ingrese el DNI: ")
 
-    # Controlamos que el DNI no este ya registrado
+    
     cliente_encontrado = buscar_cliente_por_dni(lista_clientes, dni)
     if cliente_encontrado is not None:
         print("Ya existe un cliente con ese DNI.")
